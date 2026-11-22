@@ -1,0 +1,8 @@
+description: >-
+  Delivery: GitOps (the build/publish versus deploy split,
+  hub-and-spoke versus controller-only topology, the provisioning
+  versus deployment boundary), CI workflow conventions (path-filtered
+  triggers, fail-loudly posture, rationale comments, materialization,
+  run-scoped artifacts), and deployment profiles (primary/secondary
+  profiles, drift-proof generated pairs, security enforced in code).
+binds_to_depth: main...

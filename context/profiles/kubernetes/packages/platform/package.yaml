@@ -1,0 +1,9 @@
+description: >-
+  eBPF dataplane (kube-proxy replacement, identity-based L7 policy,
+  default workload isolation, flow observability), Gateway API (L7
+  routing over legacy Ingress, canary splitting, cross-namespace
+  routing, migration), CRD-driven DNS record sync and certificate
+  issuance, base/overlays manifest layout synced by GitOps, and
+  managed Kubernetes (dataplane enablement, autoscaling delegation,
+  upgrade posture).
+binds_to_depth: main...

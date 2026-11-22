@@ -1,0 +1,13 @@
+title: Terraform Practice
+description: >-
+  Infrastructure-as-code practice: how state is layered by ownership
+  and lifecycle, how internal modules stay hardened and versioned,
+  and how Terraform/HCL relates to OpenTofu, language-native IaC, and
+  Kubernetes-native IaC. Specializes core: the provisioning versus
+  deployment boundary stated here is the same boundary core's GitOps
+  reference owns from the delivery side.
+extends:
+  - github.com/ctxmod/infra/context/profiles/core
+packages:
+  add:
+    - practice

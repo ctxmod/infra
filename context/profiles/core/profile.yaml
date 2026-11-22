@@ -1,5 +1,19 @@
 title: Infrastructure Core
 description: >-
-  Cloud-neutral delivery and security doctrine: CI workflows,
-  deployment profiles, GitOps, supply-chain signing, and workload
-  identity, with an opt-in GCP delivery package.
+  How software gets from a merged commit to a running, signed,
+  monitored workload: the delivery pipeline, the supply chain around
+  its artifacts, the GitOps layer that reconciles deployment state,
+  and the identity model that lets machines authenticate without
+  long-lived keys. Applies to any repository that ships deployable
+  artifacts: CI workflow definitions, infrastructure configuration,
+  deployment manifests, and the release plumbing between them.
+  Written cloud-neutral, with current-generation examples named where
+  the mechanism is the topic (Sigstore signing, SLSA provenance,
+  federated identity, GCP delivery services). GCP delivery is the
+  opt-in gcp package. The kubernetes and terraform profiles
+  specialize this tier; each owns its concern rather than restating
+  it.
+packages:
+  defaults:
+    - delivery
+    - security

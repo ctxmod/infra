@@ -1,0 +1,13 @@
+title: Kubernetes Platform
+description: >-
+  The cluster platform layer: the eBPF dataplane and identity-based
+  network policy, Gateway API ingress routing, declarative DNS and
+  certificate issuance, how manifests are laid out for GitOps
+  consumption, and what changes (and does not) on managed Kubernetes.
+  Specializes core; deployment-side concerns (signing, GitOps
+  topology, CI conventions) live in core.
+extends:
+  - github.com/ctxmod/infra/context/profiles/core
+packages:
+  add:
+    - platform

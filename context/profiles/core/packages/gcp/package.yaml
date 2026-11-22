@@ -1,0 +1,4 @@
+description: >-
+  GCP delivery: Artifact Registry, the progressive delivery service,
+  and service-layer IAM separation. Opt-in.
+binds_to_depth: main...
