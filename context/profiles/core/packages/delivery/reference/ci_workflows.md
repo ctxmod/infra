@@ -63,3 +63,13 @@ the run (run id, commit sha, or both), never to a shared fixed path. Parallel ru
 on the same branch must not overwrite each other, and any artifact must remain
 attributable to the exact run that produced it. Fixed shared paths are the storage
 equivalent of a mutable tag: convenient, and quietly wrong under concurrency.
+
+## Verified GitHub Actions behaviour
+
+The conventions above are platform-neutral. Dated, verified GitHub Actions
+facts that bear on them — `uses:` refs that actionlint does not resolve, the
+numeric OIDC environment subject, skipped-versus-failed `needs` and the
+fail-open summary job, reusable-call result poisoning, static concurrency
+groups for ingest-style workflows, structural workflow tests with negative
+controls, and Claude plugin CI without credentials — live in the
+`github_actions` profile of this module (`workflows/reference/actions_facts.md`).
