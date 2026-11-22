@@ -1,0 +1,5 @@
+description: >-
+  .NET codegen and docs routes: hidi OpenAPI-to-Swagger conversion,
+  NSwag on .NET 10, .NET 10 SDK shape, and cheap routes to Microsoft
+  Learn and related docs.
+binds_to_depth: main...

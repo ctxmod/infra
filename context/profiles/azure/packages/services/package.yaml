@@ -1,0 +1,6 @@
+description: >-
+  Azure service facts: AI Search RBAC, roles and token resource,
+  in-place attribute changes, PostgreSQL Flexible Server SKUs,
+  OpenAI/Foundry quota, model parameters and pricing, role renames,
+  ACR login, async Foundry clients, arm64 image builds.
+binds_to_depth: main...
