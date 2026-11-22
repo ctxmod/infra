@@ -48,3 +48,20 @@ Deprecate attributes rather than silently repurposing them:
 
 For the state-layer consequences of module boundaries — which layer owns which
 root — see state-layering.md.
+
+## Test the module contract
+
+A hardened module's promises — private endpoints on, opt-outs named, removed
+inputs failing loudly — are behavior, and behavior gets tests. `terraform test`
+(`tofu test` on OpenTofu) runs `.tftest.hcl` files of `run` blocks against the
+module: `command = plan` runs assert on planned values without creating
+anything, `expect_failures` pins that a removed or invalid input fails with the
+named validation, and mock providers keep the suite offline. Each security
+default gets a plan-mode assertion, and each reserved-field deprecation gets an
+`expect_failures` run, so a refactor that silently drops a default fails the
+module's own CI before any consumer bumps the version.
+
+## Sources
+
+- https://developer.hashicorp.com/terraform/language/tests — `terraform test`, `.tftest.hcl` run blocks, `command = plan`, mock providers (accessed 2026-11-22)
+- https://opentofu.org/docs/cli/commands/test/ — `tofu test` (accessed 2026-11-22)
