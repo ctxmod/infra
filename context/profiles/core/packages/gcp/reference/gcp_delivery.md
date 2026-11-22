@@ -17,7 +17,8 @@ Conventions that keep it trustworthy:
   supply-chain-signing.md).
 - CI identities push; runtime identities pull; the two are distinct identities
   with distinct grants.
-- Retention policy prunes old images on a schedule; the registry is a cache of
+- Retention policy prunes old images on a schedule — Artifact Registry cleanup
+  policies, with keep rules for released digests; the registry is a cache of
   build output, not an archive system.
 
 ## Progressive delivery as a service
@@ -42,8 +43,12 @@ full platform/service split):
 - **Platform layer** owns shared infrastructure identities: the cluster's node
   pools, shared service agents, registry-level CI pushers. Managed by the platform
   team's IaC.
-- **Service layer** gives every service its own service account, its own workload
-  identity binding, and grants to exactly the resources it owns. A service's
+- **Service layer** gives every service its own Kubernetes service account, its own
+  Workload Identity Federation for GKE principal, and grants to exactly the
+  resources it owns. Grant roles directly to the KSA principal where the target
+  service supports federated tokens; bind an IAM service account for
+  impersonation only where it does not (the workload-identity reference owns the
+  principal form). A service's
   identity can read its own buckets and databases; it cannot see another service's.
 - CI identities are separate again from runtime identities — a pipeline that can
   deploy is not an identity that runs in production.
@@ -58,3 +63,9 @@ Federation details live in workload-identity.md, signing and provenance in
 supply-chain-signing.md, and the topology choice (which the delivery service
 serves) in gitops.md. This reference adds only the GCP-specific service names and
 the IAM separation discipline.
+
+## Sources
+
+- https://docs.cloud.google.com/kubernetes-engine/docs/concepts/workload-identity — Workload Identity Federation for GKE, direct KSA principal grants and their limitations (accessed 2026-11-22)
+- https://docs.cloud.google.com/artifact-registry/docs/repositories/cleanup-policy — cleanup policies with delete and keep rules (accessed 2026-11-22)
+- https://docs.cloud.google.com/deploy/docs/overview — Cloud Deploy delivery pipelines, promotion, and rollout strategies (accessed 2026-11-22)
