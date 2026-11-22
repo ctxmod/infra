@@ -4,6 +4,17 @@ Verified azapi and azurerm provider behavior from provisioning Azure
 workloads (2026-10 to 2026-11). Each fact cost a failed apply, a failed run,
 or a refuted fix; read this before re-deriving a provider behavior.
 
+**Version currency.** The facts below were verified on azapi 2.x and azurerm
+5.12. As of 2026-11-22 the latest releases are azapi 2.14.0, azurerm 5.14.0
+and azuread 3.10.0; a fact pinned to a provider behavior (body merge shapes,
+`ignore_changes` interplay, attribute keys) is re-verified after crossing a
+minor. **Naming.** Microsoft Entra ID is the product name, but Terraform
+spellings keep the old one: the provider is still `hashicorp/azuread` with
+`azuread_*` resources, and the azurerm backend's Entra data-plane switch is
+still `use_azuread_auth` (env `ARM_USE_AZUREAD`), which its docs now
+recommend over access keys and SAS tokens. Search for the old spelling when
+looking up configuration.
+
 - **azapi 2.x body shapes.** `body` / `sensitive_body` take raw HCL objects;
   `jsonencode(...)` is a validation error. `sensitive_body` is merge-patched
   over `body` (sensitive wins) and is never stored in state. Array-valued
@@ -83,3 +94,10 @@ step-if while `!github.event.act` (with `-e event.json` carrying
 `--container-daemon-socket /var/run/docker.sock`. Bot Service Direct Line keys: `az bot directline show` omits sites, and `listChannelWithKeys` via
 arm.botframework.com demands a client certificate — read the key from the
 Terraform state blob instead.
+
+## Sources
+
+- https://github.com/Azure/terraform-provider-azapi/releases — azapi 2.14.0 (accessed 2026-11-22 via release tags)
+- https://github.com/hashicorp/terraform-provider-azurerm/releases — azurerm 5.14.0 (accessed 2026-11-22 via release tags)
+- https://github.com/hashicorp/terraform-provider-azuread/releases — azuread 3.10.0 (accessed 2026-11-22 via release tags)
+- https://developer.hashicorp.com/terraform/language/backend/azurerm — `use_azuread_auth` / `ARM_USE_AZUREAD`, Entra ID recommended for data-plane auth (accessed 2026-11-22)
