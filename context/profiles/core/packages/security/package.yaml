@@ -1,0 +1,5 @@
+description: >-
+  Supply-chain signing (keyless OIDC signing, SLSA provenance,
+  vulnerability gates, digest-pinned deploys) and workload identity
+  federation (zero long-lived keys for CI and pods).
+binds_to_depth: main...

@@ -1,0 +1,15 @@
+title: GitHub Actions
+description: >-
+  Verified GitHub Actions behaviour that cost a red run or a wrong
+  diagnosis before it was settled: `uses:` ref resolution, the numeric
+  OIDC environment subject, skip-versus-fail `needs` semantics and the
+  fail-open summary, reusable-call result poisoning, static concurrency
+  groups, structural workflow tests, and Claude plugin CI without
+  credentials. Dated version facts drift; re-verify before relying on
+  them. Extends core, whose delivery package owns the CI workflow
+  conventions.
+extends:
+  - github.com/ctxmod/infra/context/profiles/core
+packages:
+  add:
+    - workflows

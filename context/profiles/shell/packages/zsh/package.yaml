@@ -1,0 +1,4 @@
+description: >-
+  zsh rules for machine-generated shell: subscript semantics in
+  expansion versus assignment forms, and alias/function collisions.
+binds_to_depth: main...

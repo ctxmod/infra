@@ -1,0 +1,18 @@
+title: Azure Platform Facts
+description: >-
+  Verified Azure, Terraform (azapi/azurerm), Entra ID, .NET and Power
+  Platform facts from provisioning and running real workloads
+  (2026-10 to 2026-11): provider behavior, service quirks, auth
+  fingerprints, packaging rules and docs routes. Each fact cost a failed
+  apply, a failed run, or a refuted fix; read these before re-deriving a
+  provider or service behavior. Quota and price facts carry their
+  verification date and may drift. Extends core.
+extends:
+  - github.com/ctxmod/infra/context/profiles/core
+packages:
+  add:
+    - terraform_azapi
+    - services
+    - entra
+    - power_platform
+    - dotnet

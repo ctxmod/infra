@@ -1,0 +1,7 @@
+description: >-
+  azapi 2.x and azurerm provider behavior on Azure (body shapes,
+  update-resource secret stripping, Container Apps custom-domain
+  binding, count migrations, backend grants, ARM_* overrides,
+  environment drift, data-plane storage containers) and local CI runs
+  with act.
+binds_to_depth: main...

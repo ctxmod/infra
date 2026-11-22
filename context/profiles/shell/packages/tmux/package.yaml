@@ -1,0 +1,4 @@
+description: >-
+  tmux 3.4 platform facts: pane targeting, hook scope, remain-on-exit,
+  hook format expansion, locale and HOME traps, option queries.
+binds_to_depth: main...

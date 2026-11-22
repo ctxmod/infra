@@ -1,0 +1,5 @@
+description: >-
+  GitHub Actions facts: action tag resolution, OIDC subjects, skip versus
+  fail semantics, reusable-call poisoning, concurrency, structural
+  tests, and Claude plugin CI.
+binds_to_depth: main...

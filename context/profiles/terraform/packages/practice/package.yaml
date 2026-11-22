@@ -1,0 +1,8 @@
+description: >-
+  State layering (platform versus service ownership, separate state
+  roots, remote state with least-privilege access), hardened modules
+  (security defaults baked in, semver pinning, reserved fields on
+  deprecation), and tool positioning (HCL baseline versus OpenTofu,
+  language-native IaC, Kubernetes-native IaC; when each earns its
+  cost).
+binds_to_depth: main...

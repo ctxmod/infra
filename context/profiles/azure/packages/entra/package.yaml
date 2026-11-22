@@ -1,0 +1,6 @@
+description: >-
+  Entra ID and ASP.NET Core auth: identifier-URI policy, v2 token
+  audiences, the (null)-audience fingerprint, Container App log
+  access, .NET 10 forwarded headers, and a hermetic
+  Microsoft.Identity.Web JWT fixture.
+binds_to_depth: main...

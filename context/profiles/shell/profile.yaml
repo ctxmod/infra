@@ -1,0 +1,10 @@
+title: Shell and Terminal Multiplexer
+description: >-
+  Shell and terminal-multiplexer platform facts and rules: tmux 3.4
+  targeting, hook scope, remain-on-exit, hook format expansion, locale
+  and environment traps (pinned against tmux 3.4 on Ubuntu noble), and
+  zsh subscript semantics for machine-generated shell.
+packages:
+  defaults:
+    - tmux
+    - zsh

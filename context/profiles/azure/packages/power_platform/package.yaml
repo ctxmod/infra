@@ -1,0 +1,5 @@
+description: >-
+  Power Platform solution packaging: custom connector component types
+  and path forms, packed connector shape, environment variables,
+  import prerequisites and debugging, and local tooling caveats.
+binds_to_depth: main...
