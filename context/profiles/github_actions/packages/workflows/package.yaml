@@ -1,5 +1,7 @@
 description: >-
-  GitHub Actions facts: action tag resolution, OIDC subjects, skip versus
-  fail semantics, reusable-call poisoning, concurrency, structural
-  tests, and Claude plugin CI.
+  GitHub Actions facts and hardening: workflow lockfiles and SHA
+  pinning, token permissions, script injection, pull_request_target
+  hazards, attestations, action tag resolution, OIDC subjects, skip
+  versus fail semantics, reusable-call poisoning, concurrency,
+  structural tests, and Claude plugin CI.
 binds_to_depth: main...

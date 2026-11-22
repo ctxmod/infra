@@ -13,14 +13,19 @@ The general CI workflow conventions are
 ## `uses:` refs — resolve them, actionlint does not
 
 `astral-sh/setup-uv` publishes floating major tags only up to `v7`; from
-v8 on only full versions exist (`v10.0.0` … `v10.2.0` as of 2026-10-01).
+v8 on only full versions exist (`v10.0.0` … `v10.2.0` as of 2026-10-01;
+re-checked 2026-11-22: still no `v8`/`v9`/`v10` major tags, latest
+`v10.4.0`).
 `uses: astral-sh/setup-uv@v10` therefore fails at "Set up job" — and
 **actionlint exits 0 on it**, because it does not resolve tags. Found
 while validating a repository's CI (2026-10-01): a phase report claimed
 actionlint-clean CI that could never have gone green. When validating any
 workflow, resolve every `uses:` ref against the GitHub API
 (`/repos/<o>/<r>/git/ref/tags/<tag>` and `/branches/<tag>`), not just
-actionlint. Pin setup-uv as `@v10.2.0` or by SHA.
+actionlint. Pin setup-uv by full version (`@v10.4.0`), or better by SHA or
+through a workflow lockfile — the hardening reference
+<ctxmod_link path="ctx:github.com/ctxmod/infra/context::shared::workflows@github_actions/reference/workflow_hardening.md" />
+owns the pinning policy.
 
 ## OIDC — the numeric environment subject
 
@@ -148,3 +153,8 @@ Verified 2026-11-03:
   annotation plus a `$GITHUB_STEP_SUMMARY` entry, with the step still
   running tsc whenever the file exists — never a silent skip, never a
   step that reds forever.
+
+## Sources
+
+- https://github.com/astral-sh/setup-uv/tags — tag list showing majors `v1`–`v7` only and `v10.4.0` latest (accessed 2026-11-22 via `git ls-remote --tags`)
+- https://docs.cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines — numeric `*_id` claims recommended over names (accessed 2026-11-22)

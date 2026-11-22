@@ -1,6 +1,9 @@
 title: GitHub Actions
 description: >-
-  Verified GitHub Actions behaviour that cost a red run or a wrong
+  GitHub Actions hardening (workflow lockfiles and SHA pinning,
+  least-privilege tokens, script injection, the 2025-2026
+  pull_request_target changes, attestations, actionlint and zizmor) and
+  verified GitHub Actions behaviour that cost a red run or a wrong
   diagnosis before it was settled: `uses:` ref resolution, the numeric
   OIDC environment subject, skip-versus-fail `needs` semantics and the
   fail-open summary, reusable-call result poisoning, static concurrency
