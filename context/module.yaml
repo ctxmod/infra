@@ -1,0 +1,12 @@
+title: Platform Infrastructure
+description: >-
+  Delivery pipelines, supply-chain security, GitOps, workload
+  identity and CI conventions (core); Kubernetes platform practice;
+  Terraform practice; Azure platform facts; GitHub Actions facts; and
+  shell practice (tmux 3.4, generated zsh). Cloud-neutral, with GCP
+  and Azure opt-in.
+path: github.com/ctxmod/infra/context
+requires:
+  - github.com/ctxmod/engineering/context
+default_profiles:
+  - core

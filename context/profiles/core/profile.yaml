@@ -1,0 +1,5 @@
+title: Infrastructure Core
+description: >-
+  Cloud-neutral delivery and security doctrine: CI workflows,
+  deployment profiles, GitOps, supply-chain signing, and workload
+  identity, with an opt-in GCP delivery package.
