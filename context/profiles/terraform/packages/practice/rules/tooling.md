@@ -22,8 +22,11 @@ paths:
 HCL Terraform is the baseline: broadest provider coverage, plan/apply review
 semantics, largest talent pool. OpenTofu is the HCL-compatible OSS-first
 equivalent — pick one of the two and standardize; running both in one
-repository is a non-choice. Language-native IaC (Pulumi, CDK-style) earns its
-cost when infra logic is algorithmic and typed; Kubernetes-native IaC
+repository is a non-choice. The two now diverge feature by feature (state
+encryption, ephemeral and write-only support versions, registries), so a
+configuration using a one-sided feature is a recorded lock-in decision.
+Language-native IaC (Pulumi, CDK-style) earns its cost when infra logic is
+algorithmic and typed; Kubernetes-native IaC
 (Crossplane) earns its cost in deeply GitOps-centric estates where app teams
 provision service-layer resources through the cluster. Introduce an
 alternative only for a named requirement, and keep any mix at an explicit

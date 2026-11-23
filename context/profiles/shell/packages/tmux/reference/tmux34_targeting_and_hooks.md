@@ -11,6 +11,21 @@ wins, and `show-options -gv` reports unset with exit 1 + empty stdout. None
 of these is derivable from the tmux man page, and each one produced a real
 misdiagnosis first.
 
+## Version scope — read before applying to a newer tmux
+
+These facts are pinned to **tmux 3.4** (Ubuntu 24.04 noble). As of 2026-11-22
+upstream is at **3.8** (2026-09); Ubuntu 26.04 LTS (resolute) ships **3.6a**,
+and later Ubuntu series carry 3.7b–3.8. tmux 3.7 reworked the areas several
+facts below depend on: hooks and control-mode notifications became internal
+events with key/value payloads (new `set-hook -B` monitors, `wait-for -E`, a
+broader hook set), and `show-options`/`show-hooks` were changed to use formats
+with a new `-F` flag; 3.5 added a `command-error` hook. The pane-id targeting
+rule is version-independent. Treat the hook-scope, hook-expansion,
+`show-hooks` listing and `show-options -gv` exit-code facts as **unverified on
+≥ 3.7** — re-probe them (private socket, `tmux -V` recorded in the evidence)
+before relying on them, and gate any code that depends on them with
+`#{>=:#{version},...}` or a `tmux -V` check.
+
 ## A non-zero base-index breaks index targets — never target pane indexes
 
 A server configured with `pane-base-index 1` and `base-index 1` (check with
@@ -151,3 +166,9 @@ Also confirmed working on 3.4: `#{>=:#{version},X}` format comparisons and
 
 Canonicalize tmux-reported paths (symlink chains) before comparing them in
 tests.
+
+## Sources
+
+- https://raw.githubusercontent.com/tmux/tmux/master/CHANGES — 3.5 `command-error` hook; 3.7 hook/event rework, `set-hook -B`, `show-options`/`show-hooks` formats with `-F` (accessed 2026-11-22)
+- https://github.com/tmux/tmux/releases — 3.6 (Nov), 3.7 (Jun), 3.8 (Sep) release dates (accessed 2026-11-22)
+- https://launchpad.net/ubuntu/+source/tmux — Ubuntu series versions: noble 3.4, resolute 3.6a (accessed 2026-11-22)

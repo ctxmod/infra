@@ -13,7 +13,18 @@ knows. Default choice; it is the position the other three are measured against.
 
 **OpenTofu — the OSS-first equivalent.** A community fork, HCL-compatible, that
 keeps the Terraform workflow under a permissive license. Functionally a
-drop-in for most estates. Pick OpenTofu where license posture or community
+drop-in for most estates, though the two now diverge feature by feature in both
+directions — check the specific feature, not the brand:
+
+| As of 2026-11-22 | Terraform (1.17.x) | OpenTofu (1.13.x) |
+|------------------|--------------------|-------------------|
+| Ephemeral values / write-only arguments | 1.10 / 1.11 | 1.11 |
+| Client-side state and plan encryption | No (backend encryption only) | Since 1.7 |
+| Native testing | `terraform test` (`.tftest.hcl`) | `tofu test` (same file format lineage) |
+| Notable recent additions | Terraform Policy GA and variables in provider requirements (1.17.0); Stacks on HCP Terraform | OCI registry sources for modules and providers (1.10), `lifecycle { enabled = ... }` (1.11), experimental `-lint` (1.13) |
+
+A configuration that uses a feature only one side has is no longer portable;
+record that as a deliberate lock-in decision. Pick OpenTofu where license posture or community
 governance matters; pick one and standardize — running both in one repository
 is a non-choice that doubles toolchain surface for nothing.
 
@@ -51,3 +62,11 @@ continuous; blending them — a pipeline that runs `terraform apply` per app
 release — couples the two blast radii. The delivery-side view of this boundary
 lives in the infra profile at
 <ctxmod_link path="ctx:github.com/ctxmod/infra/context::shared::delivery@core/reference/gitops.md" />.
+
+## Sources
+
+- https://raw.githubusercontent.com/hashicorp/terraform/v1.17/CHANGELOG.md — Terraform 1.17.0 (2026-10-21) features, 1.17.2 (2026-11-11) (accessed 2026-11-22)
+- https://raw.githubusercontent.com/opentofu/opentofu/v1.11/CHANGELOG.md — OpenTofu 1.11 ephemerality and `enabled` (accessed 2026-11-22)
+- https://raw.githubusercontent.com/opentofu/opentofu/v1.10/CHANGELOG.md — OCI registry module and provider sources (accessed 2026-11-22)
+- https://www.infoq.com/news/2026/10/opentofu-1-13-unknown-values/ — OpenTofu 1.13 release coverage (accessed 2026-11-22)
+- https://opentofu.org/docs/language/state/encryption/ — OpenTofu state encryption (accessed 2026-11-22)

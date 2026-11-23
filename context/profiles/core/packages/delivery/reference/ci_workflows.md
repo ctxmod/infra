@@ -66,7 +66,11 @@ equivalent of a mutable tag: convenient, and quietly wrong under concurrency.
 
 ## Verified GitHub Actions behaviour
 
-The conventions above are platform-neutral. Dated, verified GitHub Actions
+The conventions above are platform-neutral. GitHub Actions supply-chain
+hardening — workflow lockfiles and SHA pinning, least-privilege token
+permissions, script injection, `pull_request_target` hazards, attestations,
+and the actionlint/zizmor gates — lives in the `github_actions` profile
+(`workflows/reference/workflow_hardening.md`). Dated, verified GitHub Actions
 facts that bear on them — `uses:` refs that actionlint does not resolve, the
 numeric OIDC environment subject, skipped-versus-failed `needs` and the
 fail-open summary job, reusable-call result poisoning, static concurrency

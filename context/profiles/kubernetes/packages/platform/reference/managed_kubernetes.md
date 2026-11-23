@@ -41,8 +41,38 @@ its disruption budget honest.
 ## Upgrades and versions
 
 Managed control planes upgrade on the provider's schedule; the estate's job is
-to stay compatible. Pin Kubernetes versions deliberately (match dev → prod),
+to stay compatible. Upstream maintains the three newest minor releases with
+patches for roughly fourteen months each; as of 2026-11 that is 1.37 (newest,
+1.37.2), 1.36 and 1.35, with 1.34 at end of life since 2026-10-27. A cluster
+two minors behind upstream is one provider deadline from a forced upgrade. Pin Kubernetes versions deliberately (match dev → prod),
 keep manifests and controllers compatible with the supported window, and let
 node-pool upgrades roll through non-prod first. Version drift between
 environments turns every incident into two investigations; it is cheaper to
 hold one version.
+
+## Platform primitives to assume on a supported version
+
+Every supported minor (1.35+) has these as stable APIs, so new manifests use
+them instead of the workarounds that predate them:
+
+| Primitive | Stable since | Replaces |
+|-----------|--------------|----------|
+| Pod Security Admission (`pod-security.kubernetes.io/enforce: restricted` namespace labels) | 1.25 | PodSecurityPolicy (removed in 1.25) |
+| ValidatingAdmissionPolicy (in-process CEL validation) | 1.30 | Validating webhooks for simple policy |
+| Native sidecar containers (`initContainers` with `restartPolicy: Always`) | 1.33 | Sidecars as regular containers with ordering hacks; Jobs that never finish because a proxy keeps running |
+| In-place pod resize (`resize` subresource, `resizePolicy`) | 1.35 | Recreating pods to change CPU/memory; VPA's in-place mode was still beta at that graduation |
+| MutatingAdmissionPolicy (in-process CEL mutation) | 1.36 | Mutating webhooks for simple defaults |
+
+Prefer the in-process CEL policies over webhooks wherever the rule fits in an
+expression: no extra deployment on the admission path, no webhook outage that
+blocks every apply. Signature and provenance verification (core's
+supply-chain reference) still needs a policy controller.
+
+## Sources
+
+- https://kubernetes.io/releases/ — maintained minor releases and end-of-life dates (accessed 2026-11-22; patch versions from `kubernetes/kubernetes` tags)
+- https://kubernetes.io/docs/concepts/security/pod-security-admission/ — Pod Security Admission (accessed 2026-11-22)
+- https://kubernetes.io/blog/2024/04/24/validating-admission-policy-ga/ — ValidatingAdmissionPolicy GA in 1.30 (accessed 2026-11-22)
+- https://kubernetes.io/blog/2025/04/23/kubernetes-v1-33-release/ — sidecar containers stable in 1.33 (accessed 2026-11-22)
+- https://kubernetes.io/blog/2025/12/19/kubernetes-v1-35-in-place-pod-resize-ga — in-place pod resize stable in 1.35; VPA in-place mode beta (accessed 2026-11-22)
+- https://kubernetes.io/docs/reference/access-authn-authz/mutating-admission-policy/ — MutatingAdmissionPolicy, `admissionregistration.k8s.io/v1` in 1.36 (accessed 2026-11-22)

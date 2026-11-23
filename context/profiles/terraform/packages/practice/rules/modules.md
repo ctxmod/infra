@@ -24,6 +24,7 @@ Consume modules by pinned semver version — never by branch or cross-root local
 path — so platform upgrades show as reviewable per-service version diffs.
 Deprecations are loud: deprecated attributes keep their names for the window,
 removed names are reserved, and a removed input a consumer still sets fails the
-plan naming the field.
+plan naming the field. Pin those promises with `terraform test` (`tofu test`)
+plan-mode assertions and `expect_failures` runs.
 
-- security-default design, versioning/consumption contract, and reserved-field deprecation mechanics — <ctxmod_link path="ctx:github.com/ctxmod/infra/context::shared::practice@terraform/reference/modules.md" />
+- security-default design, versioning/consumption contract, reserved-field deprecation mechanics, and module contract tests — <ctxmod_link path="ctx:github.com/ctxmod/infra/context::shared::practice@terraform/reference/modules.md" />

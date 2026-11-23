@@ -18,7 +18,8 @@ authenticate through a Kubernetes service account bound to a cloud identity that
 mints short-lived tokens into the workload.
 
 Discipline that keeps federation tight: trust policies are attribute-scoped (never
-issuer-only), each pipeline purpose maps to its own least-privileged identity, and
+issuer-only) and match immutable repository and owner IDs rather than
+reusable names, each pipeline purpose maps to its own least-privileged identity, and
 each workload gets a dedicated service account — a shared identity makes least
 privilege and attribution unenforceable. When a how-to suggests downloading a key
 file, treat it as a migration target.

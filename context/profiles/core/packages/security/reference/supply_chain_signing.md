@@ -31,6 +31,21 @@ Consumers and admission policy can then assert that an artifact was produced by 
 declared pipeline from the declared source, closing the gap where a validly-signed
 image was built outside the sanctioned process. Aim for the SLSA level that the
 platform's hosted builders give by default; document the level actually achieved.
+As a concrete calibration: GitHub artifact attestations reach SLSA v1.0 Build
+Level 2 on their own, and Build Level 3 when the build runs in a reusable
+workflow shared across repositories, which isolates the build from the calling
+workflow. The SLSA specification is at v1.2 with separate Build and Source
+tracks; state which track and level a claim refers to.
+
+## CI dependencies are supply chain
+
+The build that signs an artifact is only as trustworthy as the code it ran.
+Every third-party CI step is an import: lock it to an immutable reference (a
+platform lockfile or a full commit digest, never a movable tag), grant each job
+the narrowest token scope it needs, and never let untrusted contribution input
+execute in a context that holds release credentials. The GitHub Actions
+instance of these controls, with dated platform changes, is the
+`github_actions` profile's workflow-hardening reference.
 
 ## Vulnerability gates before deploy
 
@@ -53,3 +68,9 @@ admitting an image. Reference images by immutable digest in deployment manifests
 mutable tag can be repointed after verification, which quietly voids the whole chain.
 A digest pin plus signature verification means "the bytes running are the bytes the
 sanctioned pipeline signed."
+
+## Sources
+
+- https://slsa.dev/spec/ — SLSA specification v1.2, Build and Source tracks (accessed 2026-11-22)
+- https://docs.github.com/en/actions/concepts/security/artifact-attestations — Build L2 by default, L3 via reusable workflows (accessed 2026-11-22)
+- https://docs.sigstore.dev/cosign/signing/overview/ — keyless signing with Cosign (accessed 2026-11-22)

@@ -39,7 +39,9 @@ verifies policies in monitor mode before enforcement.
 New routing configuration uses Gateway API (Gateway owned by the platform,
 Routes owned by services): weighted splitting for canaries, cross-namespace
 attach only via explicit grants, native gRPC/SSE termination. Ingress is legacy
-— convert it (`ingress2gateway`), never add new instances.
+— convert it (`ingress2gateway`), never add new instances; a cluster still
+running the ingress-nginx controller, retired in March 2026 with no further
+security patches, treats that migration as a security item.
 
 - dataplane replacement, identity-based policy, default-deny isolation, and flow observability — <ctxmod_link path="ctx:github.com/ctxmod/infra/context::shared::platform@kubernetes/reference/ebpf_dataplane.md" />
 - Gateway API capabilities, resource model, and the Ingress conversion path — <ctxmod_link path="ctx:github.com/ctxmod/infra/context::shared::platform@kubernetes/reference/gateway_api.md" />
